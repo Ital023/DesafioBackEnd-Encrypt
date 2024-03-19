@@ -41,7 +41,7 @@ Antes de começar, verifique se você atendeu aos seguintes requisitos:
 Para instalar o Cryptography-DesafioBackEnd, siga estas etapas:
 Git:
 ```
-git clone https://github.com/Ital023/CrudApplication.git
+git clone https://github.com/Ital023/DesafioBackEnd-Encrypt.git
 ```
 
 ## ☕ Usando Cryptography-DesafioBackEnd
@@ -49,11 +49,8 @@ git clone https://github.com/Ital023/CrudApplication.git
 Para usar Cryptography-DesafioBackEnd, siga estas etapas:
 
 ```
-GET / - (localhost:8080/customer-loans/{id}) return all of loans availables to specfic user.
 
-POST / - (localhost:8080/customer-loans) return save the user on db and show the availables loans to get.
-
-DELETE / - (localhost:8080/customer-loans/{id}) Delete from database the user selected.
+POST / - (localhost:8080/operation) registra as informações criptografadas no banco de dados.
 
 ```
 
