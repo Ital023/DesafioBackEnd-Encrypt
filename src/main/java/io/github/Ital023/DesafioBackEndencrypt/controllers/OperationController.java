@@ -3,6 +3,7 @@ package io.github.Ital023.DesafioBackEndencrypt.controllers;
 import io.github.Ital023.DesafioBackEndencrypt.domain.operation.Operation;
 import io.github.Ital023.DesafioBackEndencrypt.dto.OperationDTO;
 import io.github.Ital023.DesafioBackEndencrypt.services.OperationService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -30,4 +31,18 @@ public class OperationController {
          Operation operation = operationService.read(id);
          return ResponseEntity.ok().body(operation);
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity delete(@PathVariable Long id){
+        operationService.delete(id);
+        return ResponseEntity.ok().body("Usuário deletado");
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity alter(@RequestBody OperationDTO operationDTO,@PathVariable Long id){
+        this.operationService.alter(operationDTO,id);
+        return ResponseEntity.ok().body("Usuário Alterado");
+    }
+
 }

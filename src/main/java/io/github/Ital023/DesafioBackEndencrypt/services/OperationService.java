@@ -54,4 +54,41 @@ public class OperationService {
         return operationDecrypted;
     }
 
+    public void delete(Long id){
+        Optional<Operation> operation = this.repository.findById(id);
+
+        if(operation.isEmpty()){
+            throw new EntityNotFoundException();
+        }
+
+        Operation operationFound = operation.get();
+
+        this.repository.delete(operationFound);
+    }
+
+    public void alter(OperationDTO operationDTO,Long id){
+        Optional<Operation> operation = this.repository.findById(id);
+
+        if(operation.isEmpty()){
+            throw new EntityNotFoundException();
+        }
+
+        Operation operationFound = operation.get();
+
+        if(userDocumentHasContent(operationDTO)){
+            operationFound.setUserDocument(this.encryptService.encryptData(operationDTO.userDocument()));
+        }
+        if(creditCardTokenHasContent(operationDTO)){
+            operationFound.setCreditCardToken(this.encryptService.encryptData(operationDTO.creditCardToken()));
+        }
+    }
+
+    //REFACTOR: EXTRACTOR METHOD
+    public Boolean userDocumentHasContent(OperationDTO operationDTO){
+        return !operationDTO.userDocument().isEmpty();
+    }
+
+    public Boolean creditCardTokenHasContent(OperationDTO operationDTO){
+        return !operationDTO.creditCardToken().isEmpty();
+    }
 }
