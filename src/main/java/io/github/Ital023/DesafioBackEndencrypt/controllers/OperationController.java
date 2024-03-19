@@ -5,10 +5,7 @@ import io.github.Ital023.DesafioBackEndencrypt.dto.OperationDTO;
 import io.github.Ital023.DesafioBackEndencrypt.services.OperationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
@@ -26,5 +23,11 @@ public class OperationController {
                 .buildAndExpand(operation.getId()).toUri();
 
         return ResponseEntity.created(uri).body(operation);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Operation> read(@PathVariable Long id){
+         Operation operation = operationService.read(id);
+         return ResponseEntity.ok().body(operation);
     }
 }
