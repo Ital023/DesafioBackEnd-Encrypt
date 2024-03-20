@@ -49,8 +49,10 @@ git clone https://github.com/Ital023/DesafioBackEnd-Encrypt.git
 Para usar Cryptography-DesafioBackEnd, siga estas etapas:
 
 ```
-
-POST / - (localhost:8080/operation) registra as informações criptografadas no banco de dados.
+GET / - (localhost:8080/operation/{id}) -> Retorna as informações descriptografadas buscado pelo ID passado no path.
+POST / - (localhost:8080/operation) -> registra as informações criptografadas no banco de dados.
+PUT /- (localhost:8080/operation/{id}) -> Pode alterar qualquer informação individualmente, sem causar conflito nos outros dados.
+DELETE /- (localhost:8080/operation/{id}) -> Deleta as informações resgatado pelo ID.
 
 ```
 
